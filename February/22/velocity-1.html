@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#element{
+			width:  50px;
+			height: 50px;
+			background:  red;
+			position: relative ;
+		}
+	</style>
+</head>
+<body>
+	<div id="element">
+		
+	</div>
+	<pre>
+		<code>
+			$element.velocity({
+			    width: "500px",        // 动画属性 宽度到 "500px" 的动画
+			    property2: value2      // 属性示例
+			}, {
+			    /* Velocity 动画配置项的默认值 */
+			    duration: 400,         // 动画执行时间
+			    easing: "swing",       // 缓动效果
+			    queue: "",             // 队列
+			    begin: undefined,      // 动画开始时的回调函数
+			    progress: undefined,   // 动画执行中的回调函数（该函数会随着动画执行被不断触发）
+			    complete: undefined,   // 动画结束时的回调函数
+			    display: undefined,    // 动画结束时设置元素的 css display 属性
+			    visibility: undefined, // 动画结束时设置元素的 css visibility 属性
+			    loop: false,           // 循环
+			    delay: false,          // 延迟
+			    mobileHA: true         // 移动端硬件加速（默认开启）
+			});
+		</code>
+	</pre>
+	<script src="lib/jquery-1.10.min.js"></script>
+	<script src="lib/velocity.min.js"></script>
+	<script>
+		// Velocity(document.getElementById('element'), {
+		//     left: "200px"
+		// }, {
+		//     duration: 450,
+		//     delay: 1000
+		// })
+		// Velocity(document.getElementById("element"), {
+		//     width: "800px",
+		//     padding: 20,
+		//     backgroundColor:'#'+Math.random().toString().slice(2, 8)
+		// }, {
+		//     duration: 1000,
+		//     loop: true,
+		//     easing: 'easeInSine'
+		// });
+
+		$('#element').velocity({
+		    borderBottomWidth: [ "2px", "spring" ], // border-bottom 使用 "spring"
+		    width: [ "100px", [ 250, 15 ] ],        // width 使用 spring physics
+		    height: "100px"
+		}, {
+		    easing: "easeInSine", // 默认所有属性使用 "easeInSine"
+		     duration: 2000,
+		    progress: function(elements, complete, remaining, start, tweenValue) {
+		        console.log((complete * 100) + "%");
+		        console.log(remaining + "ms remaining!");
+		        console.log(tweenValue)
+		    }
+		});
+
+	</script>
+</body>
+</html>
