@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" name="" id="foo">
+
+	<script>
+		user = {};
+
+		Object.defineProperty(user, 'name', {
+			get: function(){ return document.getElementById('foo').value },
+			set: function( newValue ){ document.getElementById('foo').value = newValue },
+			configurable: true
+		})
+
+		// user.name现在绑定到#foo元素。这种底层的方式非常简洁 —— 通过定义（或扩展）变量属性的get / set实现。
+		// 由于实现非常简洁，因此可以根据情况轻松扩展/修改代码 —— 仅绑定或扩展get / set中的一个，比如绑定其他数据类型。
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" name="" id="foo">
+
+	<script>
+		user = {};
+
+		//封装一下		
+		function bindModelInput(obj, property, domElem){
+			Object.defineProperty(obj, property, {
+				get: function(){ return domElem.value },
+				set: function( newValue ){ domElem.value = newValue },
+				configurable: true
+			})
+		}
+
+		//使用
+		bindModelInput(user, 'name', document.getElementById('foo'))
+		
+
+
+	</script>
+</body>
+</html>
